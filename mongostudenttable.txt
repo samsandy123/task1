@@ -1,0 +1,142 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+school  0.000GB
+> use student
+switched to db student
+> db.student.insert({})
+WriteResult({ "nInserted" : 1 })
+> db.student.find().pretty()
+{ "_id" : ObjectId("5c4d8ec917e09ce4ea4e7a28") }
+> db.student.find()
+{ "_id" : ObjectId("5c4d8ec917e09ce4ea4e7a28") }
+> db.student.delete()
+> db.student.deleteMany({})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.student.find()
+> db.student.insert({roll:"1",name:"rahul",age:15,year:3})
+WriteResult({ "nInserted" : 1 })
+> db.student.insert([{roll:"2",name:"vijay",age:15,year:3},{roll:"3",name:"srikar",age:20,year:3}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("5c4d8f4017e09ce4ea4e7a29"),
+        "roll" : "1",
+        "name" : "rahul",
+        "age" : 15,
+        "year" : 3
+}
+{
+        "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2a"),
+        "roll" : "2",
+        "name" : "vijay",
+        "age" : 15,
+        "year" : 3
+}
+{
+        "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2b"),
+        "roll" : "3",
+        "name" : "srikar",
+        "age" : 20,
+        "year" : 3
+}
+> db.student.find({age:{$gte:15}})
+{ "_id" : ObjectId("5c4d8f4017e09ce4ea4e7a29"), "roll" : "1", "name" : "rahul", "age" : 15, "year" : 3 }
+{ "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2a"), "roll" : "2", "name" : "vijay", "age" : 15, "year" : 3 }
+{ "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2b"), "roll" : "3", "name" : "srikar", "age" : 20, "year" : 3 }
+> db.student.find({age:{$gt:15}})
+{ "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2b"), "roll" : "3", "name" : "srikar", "age" : 20, "year" : 3 }
+> db.student.find({age:{$lte:15}})
+{ "_id" : ObjectId("5c4d8f4017e09ce4ea4e7a29"), "roll" : "1", "name" : "rahul", "age" : 15, "year" : 3 }
+{ "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2a"), "roll" : "2", "name" : "vijay", "age" : 15, "year" : 3 }
+> db.student.find({age:{$lt:15}})
+> db.student.find({$or:[{age:15},{roll:"4"}]})
+2019-01-27T16:33:43.250+0530 I NETWORK  [js] reconnect 127.0.0.1:27017 ok
+{ "_id" : ObjectId("5c4d8f4017e09ce4ea4e7a29"), "roll" : "1", "name" : "rahul", "age" : 15, "year" : 3 }
+{ "_id" : ObjectId("5c4d8f7d17e09ce4ea4e7a2a"), "roll" : "2", "name" : "vijay", "age" : 15, "year" : 3 }
+> db.dropDatabase()
+{ "dropped" : "student", "ok" : 1 }
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+school  0.000GB
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

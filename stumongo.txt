@@ -1,0 +1,132 @@
+> use student
+switched to db student
+> db.scollection.insert({roll:'114',name:'sumanth',age:15})
+WriteResult({ "nInserted" : 1 })
+> db.scollection.insert([{roll:'112',name:'srikar',age:16},{roll:'111',name:'srikar',age:17},{roll:'107',name:'sohan',age:16}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> show dbs
+admin    0.000GB
+config   0.000GB
+dad      0.000GB
+dad1     0.000GB
+dad123   0.000GB
+local    0.000GB
+school   0.000GB
+student  0.000GB
+> show collections
+scollection
+> db.scollection.find().pretty()
+{
+        "_id" : ObjectId("5c4f0667722e48a65630a377"),
+        "roll" : "114",
+        "name" : "sumanth",
+        "age" : 15
+}
+{
+        "_id" : ObjectId("5c4f0704722e48a65630a378"),
+        "roll" : "112",
+        "name" : "srikar",
+        "age" : 16
+}
+{
+        "_id" : ObjectId("5c4f0704722e48a65630a379"),
+        "roll" : "111",
+        "name" : "srikar",
+        "age" : 17
+}
+{
+        "_id" : ObjectId("5c4f0704722e48a65630a37a"),
+        "roll" : "107",
+        "name" : "sohan",
+        "age" : 16
+}
+//COMPARISION OPERATORS
+-----------------------
+> db.scollection().find({age:{$gt:15}})
+2019-01-28T19:14:59.143+0530 E QUERY    [js] TypeError: db.scollection is not a function :
+@(shell):1:1
+> db.scollection.find({age:{$gt:15}})
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$gte:15}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$lte:16}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$lt:16}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+> db.scollection.find({age:{$in:[15,16]}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$in:[15,17]}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+> db.scollection.find({age:{$eq:15}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+> db.scollection.find({age:{$ne:15}})
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$nin:[15,16]}})
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+//LOGICAL OPERATORS
+--------------------
+> db.scollection.find()
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({$and:[{age:15},{roll:'114'}]})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+> db.scollection.find({$or:[{age:15},{roll:'114'}]})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+> db.scollection.find({$nor:[{age:15},{roll:'114'}]})
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$not:{$gt:15}}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+ELEMENT QUERY OPERATORS
+-----------------------
+> db.scollection.find({age:{$exists:true,$gte:15}})
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 17 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.find({age:{$exists:false,$gte:15}})
+>
+UPDATE OPERATION
+-----------------
+> db.scollection.update({age:{$gt:16}},{$set:{age:16}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.scollection.find()
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+DELETE OPERATION
+----------------
+> db.scollection.find()
+{ "_id" : ObjectId("5c4f0667722e48a65630a377"), "roll" : "114", "name" : "sumanth", "age" : 15 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a378"), "roll" : "112", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a379"), "roll" : "111", "name" : "srikar", "age" : 16 }
+{ "_id" : ObjectId("5c4f0704722e48a65630a37a"), "roll" : "107", "name" : "sohan", "age" : 16 }
+> db.scollection.deleteOne({age:{$eq:15}})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.scollection.deleteMany({age:{$eq:16}})
+{ "acknowledged" : true, "deletedCount" : 3 }

@@ -1,0 +1,99 @@
+
+> use emp
+switched to db emp
+> show collections
+> db.empcollection.insert({empno:"e101",ename:"jones",esal:12000})
+WriteResult({ "nInserted" : 1 })
+> show collections
+empcollection
+> db.empcollection.find()
+{ "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"), "empno" : "e101", "ename" : "jones", "esal" : 12000 }
+> db.empcollection.find().pretty()
+{
+        "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"),
+        "empno" : "e101",
+        "ename" : "jones",
+        "esal" : 12000
+}
+> db.empcollection.insert([{empno:"e102",ename:"king",esal:13000},{empno:"e103",ename:"sam",esal:14000}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.empcollection.find().pretty()
+{
+        "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"),
+        "empno" : "e101",
+        "ename" : "jones",
+        "esal" : 12000
+}
+{
+        "_id" : ObjectId("5c4d8d538efa2c74c1b79dc3"),
+        "empno" : "e102",
+        "ename" : "king",
+        "esal" : 13000
+}
+{
+        "_id" : ObjectId("5c4d8d538efa2c74c1b79dc4"),
+        "empno" : "e103",
+        "ename" : "sam",
+        "esal" : 14000
+}
+> db.empcollection.findOne()
+{
+        "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"),
+        "empno" : "e101",
+        "ename" : "jones",
+        "esal" : 12000
+}
+> show dbs
+admin   0.000GB
+config  0.000GB
+emp     0.000GB
+local   0.000GB
+school  0.000GB
+> db.empcollection.find({empno:"e101"})
+{ "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"), "empno" : "e101", "ename" : "jones", "esal" : 12000 }
+> db.empcollection.find({empno:"e101"}).pretty()
+{
+        "_id" : ObjectId("5c4d8d0f8efa2c74c1b79dc2"),
+        "empno" : "e101",
+        "ename" : "jones",
+        "esal" : 12000
+}
+> db.empcollection.insert([{_id="e104",empno:"e104",ename:"ram",esal:13000}])
+2019-01-27T16:25:02.871+0530 E QUERY    [js] SyntaxError: missing : after property id @(shell):1:29
+> db.empcollection.find({empno:"e104"}).pretty()
+> db.empcollection.find({empno:"e104"})
+> db.empcollection.insert([{_id:"e104",empno:"e104",ename:"ram",esal:13000}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 1,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.empcollection.find({empno:"e104"}).pretty()
+{ "_id" : "e104", "empno" : "e104", "ename" : "ram", "esal" : 13000 }
+>> db.empcollection.drop()
+true
+> show collections
+
+
+
+
+
+
+
+
+
+
